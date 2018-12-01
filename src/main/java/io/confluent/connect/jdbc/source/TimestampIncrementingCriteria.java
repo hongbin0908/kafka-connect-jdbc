@@ -135,7 +135,7 @@ public class TimestampIncrementingCriteria {
     stmt.setTimestamp(2, beginTime, DateTimeUtils.UTC_CALENDAR.get());
     stmt.setLong(3, incOffset);
     stmt.setTimestamp(4, beginTime, DateTimeUtils.UTC_CALENDAR.get());
-    log.debug(
+    log.info(
         "Executing prepared statement with start time value = {} end time = {} and incrementing"
         + " value = {}", DateTimeUtils.formatUtcTimestamp(beginTime),
         DateTimeUtils.formatUtcTimestamp(endTime), incOffset

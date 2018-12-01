@@ -92,7 +92,7 @@ public class TimestampIncrementingTableQuerier extends TableQuerier implements C
 
     switch (mode) {
       case TABLE:
-        String tableName = tableId.tableName();
+        String tableName = tableId.tableName().toLowerCase();
         topic = topicPrefix + tableName;// backward compatible
         partition = OffsetProtocols.sourcePartitionForProtocolV1(tableId);
         break;
@@ -133,7 +133,7 @@ public class TimestampIncrementingTableQuerier extends TableQuerier implements C
     criteria.whereClause(builder);
 
     String queryString = builder.toString();
-    log.debug("{} prepared SQL query: {}", this, queryString);
+    log.info("{} prepared SQL query: {}", this, queryString);
     stmt = dialect.createPreparedStatement(db, queryString);
   }
 

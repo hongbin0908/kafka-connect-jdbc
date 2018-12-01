@@ -78,11 +78,19 @@
     </repositories>
 
     <dependencies>
-        <dependency>
-            <groupId>org.apache.kafka</groupId>
-            <artifactId>connect-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.kafka/connect-api -->
+	<dependency>
+		<groupId>org.apache.kafka</groupId>
+		<artifactId>connect-api</artifactId>
+		<version>1.1.0</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.apache.kafka/kafka-clients -->
+	<dependency>
+		<groupId>org.apache.kafka</groupId>
+		<artifactId>kafka-clients</artifactId>
+		<version>1.1.0</version>
+	</dependency>
+
 
          <!-- JDBC drivers, only included in runtime so they get packaged -->
         <dependency>
@@ -249,7 +257,7 @@
                 <executions>
                     <execution>
                         <id>validate</id>
-                        <phase>validate</phase>
+                        <phase>install</phase>
                         <configuration>
                             <suppressionsLocation>checkstyle/suppressions.xml</suppressionsLocation>
                         </configuration>

@@ -966,13 +966,14 @@ public class GenericDatabaseDialect implements DatabaseDialect {
         // fallthrough
 
       case Types.DECIMAL: {
-        log.debug("DECIMAL with precision: '{}' and scale: '{}'", precision, scale);
-        scale = decimalScale(columnDefn);
-        SchemaBuilder fieldBuilder = Decimal.builder(scale);
-        if (optional) {
-          fieldBuilder.optional();
-        }
-        builder.field(fieldName, fieldBuilder.build());
+//        log.debug("DECIMAL with precision: '{}' and scale: '{}'", precision, scale);
+//        scale = decimalScale(columnDefn);
+//        SchemaBuilder fieldBuilder = Decimal.builder(scale);
+//        if (optional) {
+//          fieldBuilder.optional();
+//        }
+//        builder.field(fieldName, fieldBuilder.build());
+        builder.field(fieldName, Schema.OPTIONAL_FLOAT64_SCHEMA);
         break;
       }
 
@@ -1173,10 +1174,11 @@ public class GenericDatabaseDialect implements DatabaseDialect {
         // fallthrough
 
       case Types.DECIMAL: {
-        final int precision = defn.precision();
-        log.debug("DECIMAL with precision: '{}' and scale: '{}'", precision, defn.scale());
-        final int scale = decimalScale(defn);
-        return rs -> rs.getBigDecimal(col, scale);
+        //final int precision = defn.precision();
+        //log.debug("DECIMAL with precision: '{}' and scale: '{}'", precision, defn.scale());
+        //final int scale = decimalScale(defn);
+        //return rs -> rs.getBigDecimal(col, scale);
+        return rs -> rs.getDouble(col);
       }
 
       case Types.CHAR:

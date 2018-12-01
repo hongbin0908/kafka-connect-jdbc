@@ -137,7 +137,7 @@ public class TableMonitorThread extends Thread {
     final List<TableId> tables;
     try {
       tables = dialect.tableIds(connectionProvider.getConnection());
-      log.debug("Got the following tables: " + Arrays.toString(tables.toArray()));
+      log.info("Got the following tables: " + Arrays.toString(tables.toArray()));
     } catch (SQLException e) {
       log.error(
           "Error while trying to get updated table list, ignoring and waiting for next table poll"
@@ -154,7 +154,7 @@ public class TableMonitorThread extends Thread {
         String fqn1 = dialect.expressionBuilder().append(table, false).toString();
         String fqn2 = dialect.expressionBuilder().append(table, true).toString();
         if (whitelist.contains(fqn1) || whitelist.contains(fqn2)
-            || whitelist.contains(table.tableName())) {
+            || whitelist.contains(table.tableName().toLowerCase())) {
           filteredTables.add(table);
         }
       }

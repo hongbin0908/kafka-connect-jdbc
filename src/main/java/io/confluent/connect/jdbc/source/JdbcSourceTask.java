@@ -294,7 +294,9 @@ public class JdbcSourceTask extends SourceTask {
         int batchMaxRows = config.getInt(JdbcSourceTaskConfig.BATCH_MAX_ROWS_CONFIG);
         boolean hadNext = true;
         while (results.size() < batchMaxRows && (hadNext = querier.next())) {
-          results.add(querier.extractRecord());
+          SourceRecord record = querier.extractRecord();
+          results.add(record);
+          log.info("record: " + record.toString());
         }
 
         if (!hadNext) {
